@@ -1,102 +1,109 @@
-import React, { useEffect, useState }  from 'react'
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from '@chakra-ui/react'
-import { Button } from '@chakra-ui/react'
-import GraphicCSS from './Chart.module.css'
-import { IoIosArrowDown } from 'react-icons/all'
+import React, { useEffect, useState } from "react";
 import {
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  Button,
   Menu,
   MenuButton,
   MenuList,
   MenuItem,
-} from '@chakra-ui/react'
+} from "@chakra-ui/react";
+import { IoIosArrowDown } from "react-icons/io";
 
-//Charts
-import SimpleBarChartMatDweb from '../../charts/SimpleBarChartMatDweb'
-import PieChartSimple from '../../charts/PieChartSimple'
-import SimpleRadarChart from '../../charts/SimpleRadarChart'
+import GraphicCSS from "./Chart.module.css";
 
-
+// Charts
+import SimpleBarChartMatDweb from "../../charts/SimpleBarChartMatDweb";
+import PieChartSimple from "../../charts/PieChartSimple";
+import SimpleRadarChart from "../../charts/SimpleRadarChart";
 
 function BarsGraphic() {
+  const optionsMenu = ["Monthly", "Per year", "Daily", "Every 1h"];
 
-  const optionsMenu = ['Montly','Per year','Dialy','Every 1h']
+  // Responsive configuration for graphics container
+  const [containerWidth, setContainerWidth] = useState(350);
 
-    // Responsive configuration for graphics container
-    const [containerWidth, setContainerWidth] = useState(350)
-    useEffect(() => {
-      window.screen.width <= 600 ? setContainerWidth(250) : setContainerWidth(350)
-    }, [window.screen.width]);
+  useEffect(() => {
+    const handleResize = () => {
+      setContainerWidth(window.innerWidth <= 600 ? 250 : 350);
+    };
+
+    handleResize(); // run on mount
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   return (
     <div className={GraphicCSS.graphic}>
-          <label className={GraphicCSS.graphic_menu}>
-            <Menu>
-                <MenuButton
-                position='absolute'
-                marginBottom='220px'
-                px={4}
-                py={2}
-                transition='all 0.2s'
-                borderRadius='20px'
-                borderWidth='0px'
-                backgroundColor='rgb(25, 25, 30)'
-                color='#fff'
-                padding='10px'
-                height='25px'
-                _focus={{ boxShadow: 'outline' }}
-                _active={{ background:'rgb(37, 37, 45)' }}
-                _hover={{ opacity: ".8" }}
-                 as={Button} rightIcon={<IoIosArrowDown />}>
-                  Montly
-                </MenuButton>
-                <MenuList backgroundColor='rgb(37, 37, 45)'>
-                  {optionsMenu.map((option,index)=>{
-                      return(
-                        <MenuItem 
-                        key={index}
-                        backgroundColor='rgb(37, 37, 45)'
-                        color='#aaa'
-                        borderWidth='0px'
-                        width='50%'
-                        >{option}</MenuItem>
-                      )
-                   })}
-                </MenuList>
-              </Menu>
+      <label className={GraphicCSS.graphic_menu}>
+        {/* Dropdown Menu */}
+        <Menu>
+          <MenuButton
+            as={Button}
+            position="absolute"
+            mb="220px"
+            px={4}
+            py={2}
+            transition="all 0.2s"
+            borderRadius="20px"
+            backgroundColor="rgb(25, 25, 30)"
+            color="#fff"
+            height="25px"
+            _focus={{ boxShadow: "outline" }}
+            _active={{ background: "rgb(37, 37, 45)" }}
+            _hover={{ opacity: 0.8 }}
+            rightIcon={<IoIosArrowDown />}
+          >
+            Monthly
+          </MenuButton>
 
-            <Tabs width={containerWidth} height='400px' colorScheme='rgb(110,112,125)'>
-              <TabList
-              border='none'
-              margin='10px'>
-                <Tab>One</Tab>
-                <Tab>Two</Tab>
-                <Tab>Three</Tab>
-              </TabList>
-              <TabPanels>
-                <TabPanel width='100%' height='380px'>
+          <MenuList backgroundColor="rgb(37, 37, 45)" border="none">
+            {optionsMenu.map((option, index) => (
+              <MenuItem
+                key={index}
+                backgroundColor="rgb(37, 37, 45)"
+                color="#aaa"
+                _hover={{ background: "rgb(50, 50, 58)" }}
+              >
+                {option}
+              </MenuItem>
+            ))}
+          </MenuList>
+        </Menu>
 
-                  {/* //Graphic #1 */}
-                  <SimpleBarChartMatDweb />
+        {/* Tabs */}
+        <Tabs
+          width={containerWidth}
+          height="400px"
+          colorScheme="gray"
+          variant="soft-rounded"
+        >
+          <TabList border="none" mb={3} justifyContent="center">
+            <Tab>One</Tab>
+            <Tab>Two</Tab>
+            <Tab>Three</Tab>
+          </TabList>
 
-                </TabPanel>
-                <TabPanel width='100%' height='380px'>
+          <TabPanels>
+            <TabPanel width="100%" height="380px">
+              <SimpleBarChartMatDweb />
+            </TabPanel>
 
-                  {/* //Graphic #2 */}
-                  <PieChartSimple />
+            <TabPanel width="100%" height="380px">
+              <PieChartSimple />
+            </TabPanel>
 
-                </TabPanel>
-                <TabPanel width='100%' height='380px'>
-                  
-                  {/* //Graphic #3 */}
-                   <SimpleRadarChart />
-
-                </TabPanel>
-              </TabPanels>
-            </Tabs>
-          </label>
-          
+            <TabPanel width="100%" height="380px">
+              <SimpleRadarChart />
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+      </label>
     </div>
-  )
+  );
 }
 
-export default BarsGraphic
+export default BarsGraphic;
