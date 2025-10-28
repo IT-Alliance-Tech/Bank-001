@@ -2,7 +2,7 @@ import React from 'react'
 import CategoryCSS from './Categories_styles.module.css'
 import { BiTransfer } from 'react-icons/all'
 import { FaWallet } from 'react-icons/all'
-import { FaCarAlt } from 'react-icons/all'
+import { FaCarAlt } from 'react-icons/all' 
 
 const icons = [<BiTransfer />,<FaWallet />,<FaCarAlt />]
 
