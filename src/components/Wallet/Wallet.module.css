@@ -1,0 +1,119 @@
+.father{
+    grid-column: 2;
+    grid-row: 1; 
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-flow: row wrap;
+    min-height: 90vh;
+    padding: 20px;
+    width: 90vw;
+    height: 100%;
+    background: linear-gradient(8deg, rgba(29,29,34,1) 0%, rgba(52,52,56,1) 29%, rgba(34,33,40,1) 74%);
+}
+
+.container_stats{
+    max-width: 45%;
+    min-width: 300px;
+    height: fit-content;
+    padding: 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-flow: row wrap;
+    padding: 10px;
+    padding-bottom: 0px;
+}
+
+.container_cards{
+    min-width: 240px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-flow: column nowrap;
+    width: 50%;
+    height: 400px;
+}
+
+.card{
+    max-width: 310px;
+    width: 80%;
+    min-width: 200px;
+    height: 130px;
+    padding: 10px;
+    background: rgb(61,64,68);
+    background: linear-gradient(122deg, rgba(61,64,68,1) 25%, rgba(31,31,37,1) 100%);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-flow: column nowrap;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 20px;
+}
+
+.chart{
+    transform: scale(1.6);
+    color: #973f41;
+    align-self: center;
+}
+
+.coinContainer{
+    max-width: 320px;
+    width: 45%;
+    min-width: 240px;
+    height: 370px;
+    margin: 10px;
+    background: rgb(61,64,68);
+    background: linear-gradient(122deg, rgba(61,64,68,1) 25%, rgba(31,31,37,1) 100%);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column nowrap;
+    outline: 1px solid rgb(107, 105, 105);
+}
+
+.buttons{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-flow: column nowrap;
+}
+
+.card_chart{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background: rgb(61,64,68);
+    background: linear-gradient(122deg, rgba(61,64,68,1) 25%, rgba(31,31,37,1) 100%);
+    border-radius: 20px;
+    margin: 30px 10px;
+    outline: 1px solid #aaa;
+}
+
+.container_table{
+    min-width: 550px;
+    width: 45%;
+    max-height: 90%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+/* Responsive Design */
+@media only screen and (max-width: 1000px){
+    .container_table{
+        width: 100%;
+    }
+    .father{
+        width: fit-content;
+    }
+    .card_chart{
+        min-width: 550px;
+    }
+}
